@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+    <style>
+    @import url('https://fonts.googleapis.com/css2?family=Zeyada&display=swap');
+
+    body {
+        overflow: hidden;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-size: 100%;
+        background-image: url("Image6.jpg");
+        background-position: center center;
+    }
+
+    .paper {
+        background-image: url("Image3.jpg");
+        background-size: 500px;
+        background-position: center center;
+        padding: 20px 100px;
+        transform: rotateZ(-5deg);
+        box-shadow: 1px 15px 20px 0px rgba(0, 0, 0, 0.5);
+        position: absolute;
+    }
+
+    .paper.heart {
+        position: center;
+        width: 200px;
+        height: 200px;
+        padding: 0;
+        border-radius: 50%;
+    }
+	.paper.heart1 {
+        position: center;
+		background-image: url('Image8.png');
+        width: 200px;
+        height: 200px;
+        padding: 0;
+        border-radius: 50%;
+
+    }
+
+   .paper.image {
+    
+    
+	}
+
+	.paper.image img {
+    max-height: 300px; /* Adjust this value to change the maximum height */
+    width: auto; /* This allows the image to maintain its aspect ratio */
+    display: block; /* Ensures the image is treated as a block element */
+    margin: 0 auto; /* Centers the image horizontally */
+	}
+
+
+
+    .paper.image p {
+        font-size: 18px;
+    }
+
+    img {
+        max-height: 150px;
+        width: 100%;
+        user-select: none;
+    }
+
+    .paper.heart::after {
+        content: "";
+        background-image: url('https://cdn.pixabay.com/photo/2016/03/31/19/25/cartoon-1294994__340.png');
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        background-size: 150px;
+        background-position: center center;
+        background-repeat: no-repeat;
+        opacity: 0.6;
+    }
+
+    .paper:nth-of-type(3n) {
+        background-position: left top;
+    }
+
+    p {
+        font-family: 'Georgia';
+        font-size: 30px;
+        color: rgb(0, 0, 100);
+        opacity: 0.75;
+        user-select: none;
+
+    }
+
+    .loveTEXT {
+        font-family: georgian;
+        color: #800080;
+        font-size: 18px;
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+        }
+
+        to {
+            opacity: 1;
+        }
+    }
+</style>
+<head>
+    <meta charset="UTF-8">
+    <title>Happy Birthday Monkey ❤️</title>
+    <link rel='stylesheet'
+        href='https://fonts.googleapis.com/css2?family=Short+Stack&amp;family=Homemade+Apple&amp;display=swap'>
+    
+</head>
+
+<body>
+
+    <div>
+	
+        <b class="loveTEXT">Wishing you a day filled with many pleasant surprises and tons of gifts.<br> A lot of love for you on this special day.<br>
+		A very Happy Birthday to one of the sweet persons I have known. Keep Smiling. <br>Happy Birthday</b>
+		<br>
+		<div class="paper heart"></div><div class="paper heart1"></div>
+		
+        
+    </div><br>
+
+    <!-- Saravanan Code -->
+    <!-- https://codepen.io/devsaro/pen/wvYPaRg -->
+    
+    <div class="paper image">
+        <p>LOVE YOU</p>
+        <img src="Image5.jpg" alt="Image 5">
+    </div>
+    <div class="paper image">
+        <p>Always keep smiling like this and be happy what </p>
+		<p>No matter what life throws at us, I will always have your back </p>
+        <img src="Image2.jpeg" alt="Image 2">
+    </div>
+    <div class="paper image">
+        
+		<p>How can someone be so cute ❤️ and amazing?</p>
+		<img src="Image1.jpeg" alt="Image 1">
+        
+    </div>
+    <div class="paper">
+		<br>
+        <p class="p1">Hope your birthday <br>
+		is just the beginning of a year <br>
+		full of happiness!</p>
+		<p> You’re a shining star,a rock star! <p>
+		<br>
+		
+    </div>
+    <div class="paper">
+		<p class="p1">Happy Birthday Meenakshi <span style="color: red !important;">❤️</span></p>
+        <p class="p1">Enjoy your day hope you have a wonderful day</p>
+    </div>
+    <div class="paper">
+        <p class="p1">Drag the slides to move!</p>
+    </div>
+    <!-- javascript file -->
+    <!-- <script src="script.js"></script> -->
+    <script>
+        let highestZ = 1;
+        class Paper {
+            holdingPaper = false;
+            mouseTouchX = 0;
+            mouseTouchY = 0;
+            mouseX = 0;
+            mouseY = 0;
+            prevMouseX = 0;
+            prevMouseY = 0;
+            velX = 0;
+            velY = 0;
+            rotation = Math.random() * 30 - 15;
+            currentPaperX = 0;
+            currentPaperY = 0;
+            rotating = false;
+            init(paper) {
+                document.addEventListener('mousemove', (e) => {
+                    if (!this.rotating) {
+                        this.mouseX = e.clientX;
+                        this.mouseY = e.clientY;
+                        this.velX = this.mouseX - this.prevMouseX;
+                        this.velY = this.mouseY - this.prevMouseY;
+                    }
+                    const dirX = e.clientX - this.mouseTouchX;
+                    const dirY = e.clientY - this.mouseTouchY;
+                    const dirLength = Math.sqrt(dirX * dirX + dirY * dirY);
+                    const dirNormalizedX = dirX / dirLength;
+                    const dirNormalizedY = dirY / dirLength;
+                    const angle = Math.atan2(dirNormalizedY, dirNormalizedX);
+                    let degrees = 180 * angle / Math.PI;
+                    degrees = (360 + Math.round(degrees)) % 360;
+                    if (this.rotating) {
+                        this.rotation = degrees;
+                    }
+                    if (this.holdingPaper) {
+                        if (!this.rotating) {
+                            this.currentPaperX += this.velX;
+                            this.currentPaperY += this.velY;
+                        }
+                        this.prevMouseX = this.mouseX;
+                        this.prevMouseY = this.mouseY;
+                        paper.style.transform = `translateX(${this.currentPaperX}px) translateY(${this.currentPaperY}px) rotateZ(${this.rotation}deg)`;
+                    }
+                })
+                paper.addEventListener('mousedown', (e) => {
+                    if (this.holdingPaper) return;
+                    this.holdingPaper = true;
+                    paper.style.zIndex = highestZ;
+                    highestZ += 1;
+                    if (e.button === 0) {
+                        this.mouseTouchX = this.mouseX;
+                        this.mouseTouchY = this.mouseY;
+                        this.prevMouseX = this.mouseX;
+                        this.prevMouseY = this.mouseY;
+                    }
+                    if (e.button === 2) {
+                        this.rotating = true;
+                    }
+                });
+                window.addEventListener('mouseup', () => {
+                    this.holdingPaper = false;
+                    this.rotating = false;
+                });
+            }
+        }
+        const papers = Array.from(document.querySelectorAll('.paper'));
+        papers.forEach(paper => {
+            const p = new Paper();
+            p.init(paper);
+        });
+
+
+
+        const noButton = document.getElementById("no-btn");
+        const yesButton = document.getElementById("yes-btn");
+        const popup = document.getElementById("popup");
+
+        noButton.addEventListener("mouseover", () => {
+            noButton.style.position = "absolute";
+            noButton.style.left = Math.random() * 80 + "vw";
+            noButton.style.top = Math.random() * 80 + "vh";
+        });
+
+        yesButton.addEventListener("click", () => {
+            popup.style.display = "block";
+        });
+
+        // Hide the popup initially
+        popup.style.display = "none";
+
+    </script>
+</body>
+
+</html>
